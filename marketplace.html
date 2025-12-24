@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVOX RP | XENO Marketplace</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+
+<!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html">Evolution</a>
+        <a href="marketplace.html">Market</a>
+        <a href="rules.html">Codex</a>
+        <a href="whitelist.html">Clearance</a>
+        <a href="jobs.html">Economy</a>
+        <hr>
+        <div id="mobileAuth"></div>
+    </nav>
+
+<!-- Floating Navigation -->
+    <header id="mainHeader">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <img src="assets/images/logo.png" alt="AVOX RP">
+                </a>
+
+            </div>
+
+            <nav class="nav-links">
+                <a href="index.html">Evolution</a>
+                <a href="marketplace.html">Market</a>
+                <a href="rules.html">Codex</a>
+                <a href="whitelist.html">Clearance</a>
+                <a href="jobs.html">Economy</a>
+            </nav>
+
+            <div class="nav-right">
+                <div class="nav-auth" id="authHeader"></div>
+                <div class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars-staggered"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+<main class="market-page">
+    <div class="container">
+        <div class="market-header">
+            <div>
+                <span class="hero-tag">Peer-to-Peer Trading</span>
+                <h2>XENO <span>Exchange</span></h2>
+            </div>
+            <button class="btn btn-primary" onclick="openListingModal()">
+                <i class="fas fa-plus"></i> List Substation Item
+            </button>
+        </div>
+
+        <div class="market-grid" id="marketList">
+            <!-- Loaded via JS -->
+        </div>
+    </div>
+</main>
+
+<!-- Listing Modal -->
+    <div id="listingModal" class="listing-modal">
+        <div class="bento-card">
+            <h3>Establish Listing</h3>
+            <p class="text-sm">Automated anti-scam escrow active.</p>
+
+            <label>SELECT YOUR ASSET</label>
+            <select id="assetSelect" onchange="updateListingInputs()">
+                <option value="">-- Loading Assets... --</option>
+            </select>
+
+            <div id="listingDetails" class="hidden">
+                <label>ITEM IDENTIFIER</label>
+                <input type="text" id="itemName" readonly>
+
+                <input type="hidden" id="itemType">
+                <input type="hidden" id="itemId">
+
+                <label>XENO VALUATION</label>
+                <input type="number" id="itemPrice" placeholder="Price in Coins">
+
+                <div class="flex-group">
+                    <button class="btn btn-outline" onclick="closeListingModal()">Cancel</button>
+                    <button class="btn btn-primary" onclick="listItem()">Deploy Listing</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/auth.js"></script>
+<script>
+    async function loadMarket() {
+        const token = localStorage.getItem('token');
+        const response = await fetch('/api/marketplace', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const listings = await response.json();
+
+        const list = document.getElementById('marketList');
+        list.innerHTML = '';
+
+        listings.forEach(item => {
+            const card = document.createElement('div');
+            card.classList.add('bg-[rgba(10,4,31,0.7)]', 'backdrop-blur-xl', 'border', 'border-border', 'rounded-3xl', 'p-6', 'relative', 'transition-all', 'duration-400', 'ease-transition', 'hover:translate-y-[-5px]', 'hover:border-primary');
+            card.innerHTML = `
+                    <span class="absolute top-5 right-5 bg-primary-glow text-primary py-1.5 px-3 rounded-full text-xs font-extrabold uppercase">${item.item_type}</span>
+                    <h3 class="mt-2.5 text-xl font-bold">${item.item_name}</h3>
+                    <div class="flex items-center gap-2.5 text-xs text-text-dim mb-5">
+                        <i class="fas fa-user-circle"></i> Sold by ${item.seller_name}
+                    </div>
+                    <div class="flex items-center gap-2.5 text-2xl font-extrabold text-white">
+                        <i class="fas fa-coins text-accent"></i> ${item.price}
+                    </div>
+                    <p class="text-xs text-text-dim mb-5">Asset ID: #${item.item_id}</p>
+                    <button class="relative py-[18px] px-[45px] rounded-xl font-bold text-base no-underline inline-flex items-center gap-2.5 overflow-hidden transition-all duration-400 ease-transition bg-primary text-white shadow-[0_10px_30px_rgba(125,76,252,0.4)] hover:translate-y-[-5px] hover:shadow-[0_15px_40px_rgba(125,76,252,0.4)] w-full justify-center" onclick="buyItem(${item.id})">
+                        Authorize Purchase
+                    </button>
+                `;
+            list.appendChild(card);
+        });
+    }
+
+    async function buyItem(listingId) {
+        const token = localStorage.getItem('token');
+        const response = await fetch('/api/marketplace/buy', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ listingId })
+        });
+
+        const result = await response.json();
+        alert(result.message || result.error);
+        loadMarket();
+    }
+
+    async function listItem() {
+        const token = localStorage.getItem('token');
+        const data = {
+            item_type: document.getElementById('itemType').value,
+            item_name: document.getElementById('itemName').value,
+            item_id: document.getElementById('itemId').value,
+            price: document.getElementById('itemPrice').value
+        };
+
+        const response = await fetch('/api/marketplace/list', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        alert(result.message || result.error);
+        closeListingModal();
+        loadMarket();
+    }
+
+    function openListingModal() { document.getElementById('listingModal').classList.remove('hidden'); }
+    function closeListingModal() { document.getElementById('listingModal').classList.add('hidden'); }
+
+    document.addEventListener('DOMContentLoaded', loadMarket);
+</script>
+<!-- Scroll to Top -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+</body>
+
+</html>

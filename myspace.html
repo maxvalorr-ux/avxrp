@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Space | Avox RP Dashboard</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+
+<body>
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html">Evolution</a>
+        <a href="marketplace.html">Market</a>
+        <a href="rules.html">Codex</a>
+        <a href="whitelist.html">Clearance</a>
+        <a href="jobs.html">Economy</a>
+        <hr>
+        <div id="mobileAuth"></div>
+    </nav>
+
+    <!-- Floating Navigation -->
+        <header id="mainHeader">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <img src="assets/images/logo.png" alt="AVOX RP">
+                </a>
+
+            </div>
+
+            <nav class="nav-links">
+                <a href="index.html">Evolution</a>
+                <a href="marketplace.html">Market</a>
+                <a href="rules.html">Codex</a>
+                <a href="whitelist.html">Clearance</a>
+                <a href="jobs.html">Economy</a>
+            </nav>
+
+            <div class="nav-right">
+                <div class="nav-auth" id="authHeader"></div>
+                <div class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars-staggered"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="dashboard-layout">
+            <!-- Sidebar -->
+            <aside class="profile-card">
+                <div class="skin-preview">
+                    <img id="skinImg" src="https://assets.open.mp/assets/images/skins/0.png" alt="Skin">
+                </div>
+                <div class="user-meta">
+                    <span class="uid-tag">Citizen ID: #<span id="uidVal">---</span></span>
+                    <h2 id="usernameVal">Loading...</h2>
+                    <div class="status-badges">
+                        <span class="badge badge-whitelist" id="whitelistBadge">Checking...</span>
+                        <span class="badge badge-level" id="levelBadge">Lvl --</span>
+                    </div>
+                </div>
+
+                <div id="warningSection" class="warning-log">
+                    <h4><i class="fas fa-triangle-exclamation"></i> Sanction Records</h4>
+                    <div class="warning-item">
+                        <span>Warnings</span>
+                        <span id="warningCount">-- / 3</span>
+                    </div>
+                </div>
+
+                <div id="profileActions">
+                </div>
+
+                <div class="">
+                    <a href="javascript:void(0)" onclick="logout()" class="btn btn-outline text-red-500">
+                        <i class="fas fa-power-off"></i> Terminate Link
+                    </a>
+                </div>
+            </aside>
+
+            <!-- Main Panel -->
+            <main>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-wallet"></i>
+                        <span class="label">Cash on Hand</span>
+                        <span class="value" id="cashVal">$ --</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-vault"></i>
+                        <span class="label">Bank Account</span>
+                        <span class="value" id="bankVal">$ --</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-coins"></i>
+                        <span class="label">XENO Coins</span>
+                        <span class="value" id="userXeno">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-clock"></i>
+                        <span class="label">Time in City</span>
+                        <span class="value" id="hoursVal">-- Hours</span>
+                    </div>
+                </div>
+
+                <!-- XENO Redeem Section -->
+                <div class="bento-card">
+                    <div class="">
+                        <div>
+                            <h4><i class="fas fa-gift"></i> Redeem Digital Voucher
+                            </h4>
+                            <p>Inject XENO coins
+                                into your vault via secure passcodes.</p>
+                        </div>
+                        <div class="">
+                            <input type="text" id="redeemCode" placeholder="XENO-XXXX-XXXX"
+                                class="">
+                            <button class="btn btn-primary" onclick="redeemXeno()">Redeem</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inventory-section">
+                    <h3>
+                        <i class="fas fa-box-open"></i> Biological & Physical Assets</h3>
+                    <div class="inventory-grid" id="inventoryGrid">
+                        <!-- Items will be injected here -->
+                        <div class="item-slot">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Scanning...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inventory-section">
+                    <h3>
+                        <i class="fas fa-id-card"></i> Certifications</h3>
+                    <div class="inventory-grid" id="licenseGrid">
+                        <!-- Licenses -->
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/myspace.js"></script>
+        <!-- Scroll to Top -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+</body>
+
+</html>

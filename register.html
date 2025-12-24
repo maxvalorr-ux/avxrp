@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVOX RP | Identity Creation</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+
+<body>
+    <div class="auth-container">
+        <div class="auth-bg-shapes"></div>
+
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="AVOX RP">
+                </a>
+                <h3>Citizen Genesis</h3>
+                <p>Constructing your virtual identity.</p>
+            </div>
+
+            <div id="authAlert" class="alert"></div>
+
+            <form id="registerForm">
+                <div class="form-grid">
+                    <div class="input-group full">
+                        <label>Identity Alias</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-id-badge"></i>
+                            <input type="text" id="username" required placeholder="User_Name">
+                        </div>
+                    </div>
+
+                    <div class="input-group full">
+                        <label>Digital Mail</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="email" required placeholder="citizen@ls.gov">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Biological Gender</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-venus-mars"></i>
+                            <select id="gender" required>
+                                <option value="0">Male</option>
+                                <option value="1">Female</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Physical Age</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-calendar-alt"></i>
+                            <input type="number" id="age" required min="18" max="99" value="21">
+                        </div>
+                    </div>
+
+                    <div class="input-group full">
+                        <label>Visual Manifestation</label>
+                        <div class="skin-selector-trigger" onclick="openSkinModal()">
+                            <div class="skin-preview-mini">
+                                <img id="selectedSkinImg" src="https://assets.open.mp/assets/images/skins/0.png">
+                            </div>
+                            <div style="flex-grow: 1;">
+                                <div style="font-size: 0.9rem; font-weight: 600;">System Appearance Selector</div>
+                                <div style="font-size: 0.75rem; color: var(--text-dim);">Current ID: <span
+                                        id="skinIdDisplay">0</span></div>
+                            </div>
+                            <i class="fas fa-chevron-right" style="color: var(--primary);"></i>
+                        </div>
+                        <input type="hidden" id="skin" value="0">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Secure Passkey</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" required placeholder="••••••••">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Verify Passkey</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-shield-alt"></i>
+                            <input type="password" id="confirmPassword" required placeholder="••••••••">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="auth-btn">
+                    <span>Initialize Genesis</span>
+                    <i class="fas fa-fingerprint"></i>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                Already registered in the mainframe?
+                <a href="login.html">Access Portal</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Skin Modal -->
+    <div id="skinModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Visual Archive</h3>
+                <button type="button" onclick="closeSkinModal()">&times;</button>
+            </div>
+            <div class="skin-grid-container">
+                <div class="skin-list" id="skinList"></div>
+                <div class="skin-preview-pane">
+                    <img id="skinModalPreviewImg" src="https://assets.open.mp/assets/images/skins/0.png">
+                    <div class="">
+                        <div class="">IDENTIFIED</div>
+                        <div class="">ID: <span id="skinModalPreviewId">0</span>
+                        </div>
+                    </div>
+                    <button type="button" class="auth-btn" onclick="confirmSkin()">Confirm
+                        Appearance</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SKIN_SOURCE = "https://assets.open.mp/assets/images/skins/";
+        let currentSelectedSkin = 0;
+
+        function openSkinModal() {
+            document.getElementById('skinModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            loadSkins();
+        }
+
+        function closeSkinModal() {
+            document.getElementById('skinModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function loadSkins() {
+            const list = document.getElementById('skinList');
+            if (list.children.length > 0) return;
+
+            const fragment = document.createDocumentFragment();
+            for (let i = 0; i <= 311; i++) {
+                const item = document.createElement('div');
+                item.className = 'skin-item';
+                if (i === currentSelectedSkin) item.classList.add('active');
+
+                item.innerHTML = `
+                    <img src="${SKIN_SOURCE}${i}.png" loading="lazy" onerror="this.src='${SKIN_SOURCE}0.png'">
+                    <div style="font-size: 0.7rem; margin-top: 5px; opacity: 0.5;">ID: ${i}</div>
+                `;
+
+                item.onclick = () => {
+                    document.querySelectorAll('.skin-item').forEach(el => el.classList.remove('active'));
+                    item.classList.add('active');
+                    currentSelectedSkin = i;
+                    document.getElementById('skinModalPreviewImg').src = SKIN_SOURCE + i + ".png";
+                    document.getElementById('skinModalPreviewId').textContent = i;
+                };
+                fragment.appendChild(item);
+            }
+            list.appendChild(fragment);
+        }
+
+        function confirmSkin() {
+            document.getElementById('skin').value = currentSelectedSkin;
+            document.getElementById('selectedSkinImg').src = SKIN_SOURCE + currentSelectedSkin + ".png";
+            document.getElementById('skinIdDisplay').textContent = currentSelectedSkin;
+            closeSkinModal();
+        }
+
+        window.onclick = (e) => {
+            if (e.target.id === 'skinModal') closeSkinModal();
+        }
+    </script>
+    <script src="assets/js/auth.js"></script>
+</body>
+
+</html>

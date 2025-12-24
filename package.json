@@ -1,0 +1,32 @@
+{
+  "name": "Avox-clone-server",
+  "version": "1.0.0",
+  "description": "Backend for Avox Clone Whitelist System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+        "build:tailwind": ".\\node_modules\\.bin\\postcss.cmd ./assets/css/style.css -o ./assets/css/tailwind.css --minify"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^17.2.3",
+    "express": "^4.22.1",
+    "jsonwebtoken": "^9.0.3",
+    "mysql2": "^3.16.0",
+    "nodemailer": "^7.0.12"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^4.1.18"
+  }
+}

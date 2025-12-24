@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Activity Log - Avox RP</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/activity_log.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <img src="assets/images/logo.png" alt="Avox RP Logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rules.html">Rules</a></li>
+                    <li><a href="jobs.html">Jobs</a></li>
+                    <li><a href="marketplace.html">Marketplace</a></li>
+                    <li><a href="myspace.html">My Space</a></li>
+                    <li><a href="whitelist.html">Whitelist</a></li>
+                    <li><a href="admin.html">Admin</a></li>
+                    <li><a href="activity_log.html">Activity Log</a></li>
+                    <li><a href="login.html" id="auth-link">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="activity-log-section">
+            <h1>City Activity Log</h1>
+            <div id="activity-log-feed">
+                <!-- Activity entries will be loaded here by JavaScript -->
+                <p class="loading-message">Loading activity feed...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Avox RP. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/activity_log.js"></script>
+</body>
+</html>

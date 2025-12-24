@@ -1,0 +1,158 @@
+Tables: anticheat_settings, atms, bans, billboards, businesses, changes, charges, clothing, divisions, entrances, factionlockers, factionpay, factionranks, factions, factionskins, flags, furniture, gangranks, gangs, gangskins, garages, gates, graffiti, houses, kills, landobjects, lands, log_admin, log_bans, log_cheat, log_contracts, log_faction, log_gang, log_give, log_namechanges, log_property, log_punishments, log_referrals, log_vip, object, phone_contacts, phonebook, points, safezone, shots, speedcameras, texts, turfs, users, vehicles, vendors, weapons
+
+Table: anticheat_settings
+Columns: ac_code, ac_code_trigger_type
+
+Table: atms
+Columns: id, pos_x, pos_y, pos_z, pos_r
+
+Table: bans
+Columns: id, username, ip, bannedby, date, reason, permanent
+
+Table: billboards
+Columns: id, text, rentby, rentdate, cost, posX, posY, posZ, posRX, posRY, posRZ, int, vw, model
+
+Table: businesses
+Columns: id, ownerid, owner, name, message, type, price, entryfee, locked, timestamp, pos_x, pos_y, pos_z, pos_a, int_x, int_y, int_z, int_a, interior, world, outsideint, outsidevw, cash, products, robbed, robbing, prices0, prices1, prices2, prices3, prices4, prices5, prices6, prices7, prices8, prices9, prices10, prices11, prices12, prices13, prices14, prices15, prices16, prices17, prices18, prices19, prices20, prices21, prices22, prices23, prices24
+
+Table: changes
+Columns: slot, text
+
+Table: charges
+Columns: id, uid, chargedby, date, reason
+
+Table: clothing
+Columns: id, uid, name, modelid, boneid, attached, pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, scale_x, scale_y, scale_z
+
+Table: divisions
+Columns: id, divisionid, name
+
+Table: entrances
+Columns: id, ownerid, owner, name, iconid, locked, radius, pos_x, pos_y, pos_z, pos_a, int_x, int_y, int_z, int_a, interior, world, outsideint, outsidevw, adminlevel, factiontype, vip, vehicles, freeze, password, label, mapicon, color
+
+Table: factionlockers
+Columns: id, factionid, pos_x, pos_y, pos_z, interior, world, iconid, label, weapon_kevlar, weapon_medkit, weapon_nitestick, weapon_mace, weapon_deagle, weapon_shotgun, weapon_mp5, weapon_m4, weapon_spas12, weapon_sniper, weapon_camera, weapon_fire_extinguisher, weapon_painkillers, price_kevlar, price_medkit, price_nitestick, price_mace, price_deagle, price_shotgun, price_mp5, price_m4, price_spas12, price_sniper, price_camera, price_fire_extinguisher, price_painkillers
+
+Table: factionpay
+Columns: id, rank, amount
+
+Table: factionranks
+Columns: id, rank, name
+
+Table: factions
+Columns: id, name, shortname, leader, type, color, rankcount, lockerx, lockery, lockerz, lockerinterior, lockerworld, turftokens
+
+Table: factionskins
+Columns: id, slot, skinid
+
+Table: flags
+Columns: id, uid, flaggedby, date, description
+
+Table: furniture
+Columns: id, houseid, modelid, name, price, pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, interior, world, door_opened, door_locked
+
+Table: gangranks
+Columns: id, rank, name
+
+Table: gangs
+Columns: id, name, motd, leader, color, strikes, level, points, turftokens, stash_x, stash_y, stash_z, stashinterior, stashworld, cash, materials, pot, crack, meth, painkillers, pistolammo, shotgunammo, smgammo, arammo, rifleammo, hpammo, poisonammo, fmjammo, weapon_9mm, weapon_sdpistol, weapon_deagle, weapon_shotgun, weapon_spas12, weapon_sawnoff, weapon_tec9, weapon_uzi, weapon_mp5, weapon_ak47, weapon_m4, weapon_rifle, weapon_sniper, weapon_molotov, armsdealer, drugdealer, arms_x, arms_y, arms_z, arms_a, drug_x, drug_y, drug_z, drug_a, armsworld, drugworld, drugpot, drugcrack, drugmeth, armsmaterials, armsprice_1, armsprice_2, armsprice_3, armsprice_4, armsprice_5, armsprice_6, armsprice_7, armsprice_8, armsprice_9, armsprice_10, armsprice_11, armsprice_12, pot_price, crack_price, meth_price, armshpammo, armspoisonammo, armsfmjammo, alliance
+
+Table: gangskins
+Columns: id, slot, skinid
+
+Table: garages
+Columns: id, ownerid, owner, type, price, locked, timestamp, pos_x, pos_y, pos_z, pos_a, exit_x, exit_y, exit_z, exit_a, world
+
+Table: gates
+Columns: gateID, gateModel, gateSpeed, gateTime, gateX, gateY, gateZ, gateRX, gateRY, gateRZ, gateInterior, gateWorld, gateMoveX, gateMoveY, gateMoveZ, gateMoveRX, gateMoveRY, gateMoveRZ, gateLinkID, gateFaction, gatePass, gateRadius
+
+Table: graffiti
+Columns: graffitiID, graffitiX, graffitiY, graffitiZ, graffitiAngle, graffitiColor, graffitiText
+
+Table: houses
+Columns: id, ownerid, owner, type, price, rentprice, level, locked, timestamp, pos_x, pos_y, pos_z, pos_a, int_x, int_y, int_z, int_a, interior, world, outsideint, outsidevw, cash, materials, pot, crack, meth, painkillers, weapon_1, weapon_2, weapon_3, weapon_4, weapon_5, weapon_6, weapon_7, weapon_8, weapon_9, weapon_10, ammo_1, ammo_2, ammo_3, ammo_4, ammo_5, ammo_6, ammo_7, ammo_8, ammo_9, ammo_10, pistolammo, shotgunammo, smgammo, arammo, rifleammo, hpammo, poisonammo, fmjammo, robbed, robbing
+
+Table: kills
+Columns: id, killer_uid, target_uid, killer, target, reason, date
+
+Table: landobjects
+Columns: id, landid, modelid, name, price, pos_x, pos_y, pos_z, rot_x, rot_y, rot_z, door_opened, door_locked, move_x, move_y, move_z, move_rx, move_ry, move_rz
+
+Table: lands
+Columns: id, ownerid, owner, price, min_x, min_y, max_x, max_y, height, lx, ly, lz
+
+Table: log_admin
+Columns: id, date, description
+
+Table: log_bans
+Columns: id, uid, date, description
+
+Table: log_cheat
+Columns: id, date, description
+
+Table: log_contracts
+Columns: id, date, description
+
+Table: log_faction
+Columns: id, date, description
+
+Table: log_gang
+Columns: id, date, description
+
+Table: log_give
+Columns: id, date, description
+
+Table: log_namechanges
+Columns: id, date, description
+
+Table: log_property
+Columns: id, date, description
+
+Table: log_punishments
+Columns: id, date, description
+
+Table: log_referrals
+Columns: id, date, description
+
+Table: log_vip
+Columns: id, date, description
+
+Table: object
+Columns: mobjID, mobjModel, mobjX, mobjY, mobjZ, mobjRX, mobjRY, mobjRZ, mobjInterior, mobjWorld
+
+Table: phone_contacts
+Columns: contact_id, phone_number, contact_name, contact_number
+
+Table: phonebook
+Columns: name, number
+
+Table: points
+Columns: id, name, capturedby, capturedgang, type, profits, time, point_x, point_y, point_z, pointinterior, pointworld
+
+Table: safezone
+Columns: id, x, y, z, range, reason
+
+Table: shots
+Columns: id, playerid, weaponid, hittype, hitid, hitplayer, pos_x, pos_y, pos_z, timestamp
+
+Table: speedcameras
+Columns: speedID, speedRange, speedLimit, speedX, speedY, speedZ, speedAngle
+
+Table: texts
+Columns: id, sender_number, recipient_number, sender, date, message
+
+Table: turfs
+Columns: id, name, capturedby, capturedgang, type, time, min_x, min_y, max_x, max_y, height
+
+Table: users
+Columns: uid, username, password, regdate, lastlogin, ip, setup, gender, age, skin, camera_x, camera_y, camera_z, pos_x, pos_y, pos_z, pos_a, interior, world, cash, bank, paycheck, level, exp, minutes, hours, adminlevel, adminname, helperlevel, health, armor, upgradepoints, warnings, injured, hospital, spawnhealth, spawnarmor, jailtype, jailtime, newbiemuted, helpmuted, admuted, livemuted, globalmuted, reportmuted, reportwarns, fightstyle, locked, accent, cookies, phone, job, secondjob, crimes, arrested, wantedlevel, materials, pot, crack, meth, painkillers, seeds, ephedrine, muriaticacid, bakingsoda, cigars, weaponclip, walkietalkie, channel, rentinghouse, spraycans, boombox, mp3player, phonebook, fishingrod, fishingbait, fishweight, components, courierskill, fishingskill, guardskill, weaponskill, mechanicskill, lawyerskill, smugglerskill, toggletextdraws, toggleooc, togglephone, toggleadmin, togglehelper, togglenewbie, togglewt, toggleradio, togglevip, togglemusic, togglefaction, togglegang, togglenews, toggleglobal, togglecam, carlicense, vippackage, viptime, vipcooldown, weapon_0, weapon_1, weapon_2, weapon_3, weapon_4, weapon_5, weapon_6, weapon_7, weapon_8, weapon_9, weapon_10, weapon_11, weapon_12, ammo_0, ammo_1, ammo_2, ammo_3, ammo_4, ammo_5, ammo_6, ammo_7, ammo_8, ammo_9, ammo_10, ammo_11, ammo_12, faction, gang, factionrank, gangrank, division, contracted, contractby, bombs, completedhits, failedhits, reports, helprequests, speedometer, factionmod, gangmod, banappealer, potplanted, pottime, laptop, potgrams, pot_x, pot_y, pot_z, pot_a, inventoryupgrade, addictupgrade, traderupgrade, assetupgrade, laborupgrade, pistolammo, shotgunammo, smgammo, arammo, rifleammo, hpammo, poisonammo, fmjammo, ammotype, ammoweapon, dmwarnings, weaponrestricted, referral_uid, refercount, watch, gps, prisonedby, prisonreason, togglehud, clothes, showturfs, showlands, watchon, gpson, doublexp, couriercooldown, pizzacooldown, detectivecooldown, duty, bandana, detectiveskill, gascan, refunded, backpack, bpcash, passid, bpmaterials, bppot, bpcrack, bpmeth, bppainkillers, bpweapon_0, bpweapon_1, bpweapon_2, bpweapon_3, bpweapon_4, bpweapon_5, bpweapon_6, bpweapon_7, bpweapon_8, bpweapon_9, bpweapon_10, bpweapon_11, bpweapon_12, bpweapon_13, bpweapon_14, bphpammo, bppoisonammo, bpfmjammo, formeradmin, deathcooldown, hunger, hungertimer, totalpatients, totalfires, rarecooldown, vipdlcooldown, customtitle, customcolor, mask, diamonds, ecoin, blindfold, rope, lockpick, repairkit, goldrim, food, bandage, medkit, nationalid, diploma, insurance, passport, passportname, passportlevel, passportskin, passportphone, marriedto, newbies, chatanim, Lottery, LotteryB, flashlight, candy, gunlicense, gunlicensetime, dirtycash, comserv, voicechat, discordtag, discordname, bindslot1, bindslot2, bindslot3, bindslot4, bindslot5, bindslot6, bindslot7, bindslot8, brokenleg, plastic, steel, metalScrap, copper, glass, rubber, stal, stal3amr, Nibro, Jwan, Wri9a, Garo, Brika, chabka, limon, sndo9limon, Orange, sold5, sold15, sold30, cardhacked, maskdo5an, c44, thirsttimer, solar, solarcharged, wear, thirst, usb
+
+Table: vehicles
+Columns: id, ownerid, owner, modelid, price, tickets, locked, plate, fuel, health, pos_x, pos_y, pos_z, pos_a, color1, color2, paintjob, registered, interior, world, neon, neonenabled, trunk, mod_1, mod_2, mod_3, mod_4, mod_5, mod_6, mod_7, mod_8, mod_9, mod_10, mod_11, mod_12, mod_13, mod_14, cash, materials, pot, crack, meth, painkillers, weapon_1, weapon_2, weapon_3, ammo_1, ammo_2, ammo_3, gangid, factiontype, job, respawndelay, pistolammo, shotgunammo, smgammo, arammo, rifleammo, hpammo, poisonammo, fmjammo
+
+Table: vendors
+Columns: id, pos_x, pos_y, pos_z, pos_r
+
+Table: weapons
+Columns: uid, slot, weaponid, ammo
+

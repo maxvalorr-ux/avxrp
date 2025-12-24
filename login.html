@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVOX RP | Secure Portal Access</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+</head>
+
+<body>
+    <div class="auth-container">
+
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="AVOX RP">
+                </a>
+                <h3>Authorization</h3>
+                <p>Establishing secure connection to mainframe.</p>
+            </div>
+
+            <div id="authAlert" class="hidden alert"></div>
+
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>Identification Alias</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" required placeholder="Select Identity Name">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Secure Passkey</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" required placeholder="••••••••">
+                    </div>
+                </div>
+
+                <div class="">
+                    <a href="javascript:void(0)" onclick="openForgotModal()"
+                        class="">Reset
+                        Credentials?</a>
+                </div>
+
+                <button type="submit" class="auth-btn">
+                    <span>Initialize Session</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                New citizen in Los Santos?
+                <a href="register.html">Begin Genesis</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotModal" class="forgot-modal">
+        <div class="forgot-modal-content">
+            <div class="text-center mb-10">
+                <h3>Account Recovery</h3>
+                <p>Enter your email to receive a recovery passkey.</p>
+            </div>
+            <div id="forgotAlert" class="hidden alert"></div>
+            <form id="forgotForm">
+                <div class="input-group">
+                    <label>Registration Email</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="forgotEmail" required placeholder="name@example.com">
+                    </div>
+                </div>
+                <button type="submit" class="auth-btn" id="forgotSubmitBtn">
+                    <span>Send Recovery Link</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+            <div class="forgot-modal-footer">
+                <a href="javascript:void(0)" onclick="closeForgotModal()">Return to Portal</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/auth.js"></script>
+    <script>
+        function openForgotModal() {
+            document.getElementById('forgotModal').classList.remove('hidden');
+        }
+        function closeForgotModal() {
+            document.getElementById('forgotModal').classList.add('hidden');
+        }
+        window.onclick = function (event) {
+            const modal = document.getElementById('forgotModal');
+            if (!modal.classList.contains('hidden') && !modal.contains(event.target) && event.target.id === 'forgotModal') closeForgotModal();
+        }
+
+        document.getElementById('forgotForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const email = document.getElementById('forgotEmail').value;
+            const btn = document.getElementById('forgotSubmitBtn');
+            const alert = document.getElementById('forgotAlert');
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+            try {
+                const response = await fetch('/api/forgot-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                const result = await response.json();
+
+                alert.classList.remove('hidden');
+                alert.textContent = result.message;
+                alert.classList.add(response.ok ? 'text-[#4ade80]' : 'text-[#ef4444]');
+                alert.classList.add(response.ok ? 'bg-[rgba(74,222,128,0.1)]' : 'bg-[rgba(239,68,68,0.1)]');
+
+                if (response.ok) {
+                    setTimeout(() => closeForgotModal(), 3000);
+                }
+            } catch (err) {
+                console.error(err);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span>Send Recovery Link</span> <i class="fas fa-paper-plane"></i>';
+            }
+        });
+    </script>
+</body>
+
+</html>
