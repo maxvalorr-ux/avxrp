@@ -1,0 +1,83 @@
+/* activity_log.css */
+.activity-log-section {
+    background: #1a1a2e;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    margin-top: 30px;
+    color: #e0e0e0;
+}
+
+.activity-log-section h1 {
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    filter: drop-shadow(0 0 10px rgba(125, 76, 252, 0.7));
+}
+
+#activity-log-feed {
+    max-height: 600px;
+    overflow-y: auto;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 16px;
+    background: #0f0f1d;
+}
+
+.loading-message,
+.error-message {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.25rem;
+    color: #a0a0b8;
+}
+
+.error-message {
+    color: #ef4444;
+}
+
+.activity-entry {
+    background: #22223a;
+    border: 1px solid #33334d;
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+.activity-entry:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(125, 76, 252, 0.3);
+}
+
+.activity-entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    color: var(--text-dim);
+}
+
+.activity-entry-header .timestamp {
+    color: var(--text-dim);
+}
+
+.activity-entry-header .username {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.activity-entry-type {
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 1.125rem;
+}
+
+.activity-entry-description {
+    color: var(--text-main);
+    font-size: 1rem;
+}
