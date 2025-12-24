@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Space | Avox RP Dashboard</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/myspace.css">
+    <link rel="stylesheet" href="assets/css/forms.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/png" href="assets/images/logo.png">
 </head>
@@ -114,18 +116,11 @@
 
                 <!-- XENO Redeem Section -->
                 <div class="bento-card">
-                    <div class="">
-                        <div>
-                            <h4><i class="fas fa-gift"></i> Redeem Digital Voucher
-                            </h4>
-                            <p>Inject XENO coins
-                                into your vault via secure passcodes.</p>
-                        </div>
-                        <div class="">
-                            <input type="text" id="redeemCode" placeholder="XENO-XXXX-XXXX"
-                                class="">
-                            <button class="btn btn-primary" onclick="redeemXeno()">Redeem</button>
-                        </div>
+                    <h4><i class="fas fa-gift"></i> Redeem Digital Voucher</h4>
+                    <p>Inject XENO coins into your vault via secure passcodes.</p>
+                    <div class="redeem-section">
+                        <input type="text" id="redeemCode" placeholder="XENO-XXXX-XXXX" class="redeem-input">
+                        <button class="btn btn-primary" onclick="redeemXeno()">Redeem</button>
                     </div>
                 </div>
 
